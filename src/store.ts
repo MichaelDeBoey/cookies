@@ -37,6 +37,8 @@ function supportsLocalStorage() {
   }
 }
 
+const hasLocalStorageSupport = supportsLocalStorage()
+
 /**
  * Checks that accessing a given property on an object
  * by name does not throw an error.
@@ -168,7 +170,7 @@ class CookieStore {
    * Hydrates the virtual cookie store from the `localStorage` if defined.
    */
   hydrate(): void {
-    if (!supportsLocalStorage()) {
+    if (!hasLocalStorageSupport) {
       return
     }
 
@@ -215,7 +217,7 @@ Invalid value has been removed from localStorage to prevent subsequent failed pa
    * so they are available on the next page load.
    */
   persist(): void {
-    if (!supportsLocalStorage()) {
+    if (!hasLocalStorageSupport) {
       return
     }
 
